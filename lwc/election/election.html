@@ -1,0 +1,77 @@
+<template>
+    <lightning-card>
+
+        <div class="slds-text-align_center">
+            <div class="slds-grid slds-grid_align-center slds-text-heading_medium slds-m-bottom_medium">
+                <div>Select a party</div>
+                <template if:true={userName}>
+                    <div style="margin-left: 10px;">{userName}</div>
+                </template>
+            </div>
+        </div>
+
+        <template if:true={parties}>
+
+            <div class="slds-grid slds-wrap ">
+                <template for:each={parties} for:item="party">
+                    <div key={party.Id} class="slds-col slds-size_1-of-3">
+                        <lightning-card  onclick={handleCardClick} data-id={party.Id}>
+
+                            <div class="slds-text-align_center slds-p-around_medium party-card">
+                                <h1 class="slds-text-heading_medium">{party.Code__c}</h1>
+                                <p>{party.Description__c}</p>
+                            </div>
+
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+
+            <div class="button">
+                    <lightning-button variant="destructive" label="Party Missing" title="Can not find my party" onclick={handleMissingClick} class="slds-m-left_x-small "></lightning-button>
+                
+                    <template if:true={missingButton}>
+                            
+                        <div class="button">If your political party is not on the list please write down the information and save</div>
+
+                            <lightning-input label=""
+                                                name="partyName"
+                                                value={partyName}
+                                                onchange={handleCustomTextChange}
+                                                placeholder="Enter party Name">
+                            </lightning-input>
+
+                            <lightning-input name="partyCode" 
+                                                value={partyCode}
+                                                onchange={handleCustomTextChange}
+                                                placeholder="Enter party Code">
+                            </lightning-input>
+
+                            <lightning-input name="partyDescription"
+                                                value={partyDescription}
+                                                onchange={handleCustomTextChange}
+                                                placeholder="Enter party description">
+                            </lightning-input>
+
+                            <lightning-input name="partyLeader"
+                                                value={partyLeader}
+                                                onchange={handleCustomTextChange}
+                                                placeholder="Enter party Leader name's">
+                            </lightning-input>
+                    
+                    </template>
+                    
+                    <div class="button ">
+                        <lightning-button label="Save Choice" onclick={handleSave} ></lightning-button>
+                    </div>
+            </div>
+            
+        </template>
+
+        <template if:false={parties}>
+            <p>No parties available.</p>
+        </template>
+
+    </lightning-card>
+</template>
+ 

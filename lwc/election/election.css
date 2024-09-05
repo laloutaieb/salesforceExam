@@ -1,0 +1,20 @@
+.party-card {
+    border: 2px solid #d8dde6; 
+    border-radius: 0.25rem; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.party-card.empty-card {
+    background-color: #f4f6f9;
+    border: 1px dashed #d8dde6;
+}
+
+.party-card:hover {
+    background-color: #f3f6f9;
+}
+
+.button { 
+    margin-top: auto;
+    padding-top: 2%;
+    padding-left: 1% ;
+}
